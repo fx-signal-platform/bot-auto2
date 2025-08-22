@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forex Signal Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background: #2c3e50;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .buy {
+            color: green;
+            font-weight: bold;
+        }
+        .sell {
+            color: red;
+            font-weight: bold;
+        }
+        h2 {
+            margin-top: 40px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 Forex Signal Dashboard</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Pair</th>
+                <th>Direction</th>
+                <th>Entry</th>
+                <th>Stop Loss</th>
+                <th>Take Profit</th>
+                <th>Risk/Reward</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for signal in signals %}
+            <tr>
+                <td>{{ signal.pair }}</td>
+                <td class="{{ signal.direction|lower }}">{{ signal.direction }}</td>
+                <td>{{ signal.entry }}</td>
+                <td>{{ signal.sl }}</td>
+                <td>{{ signal.tp }}</td>
+                <td>{{ signal.rr }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>📜 History</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Pair</th>
+                <th>Direction</th>
+                <th>Entry</th>
+                <th>Stop Loss</th>
+                <th>Take Profit</th>
+                <th>Risk/Reward</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in history %}
+            <tr>
+                <td>{{ item.pair }}</td>
+                <td class="{{ item.direction|lower }}">{{ item.direction }}</td>
+                <td>{{ item.entry }}</td>
+                <td>{{ item.sl }}</td>
+                <td>{{ item.tp }}</td>
+                <td>{{ item.rr }}</td>
+                <td>{{ item.time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
